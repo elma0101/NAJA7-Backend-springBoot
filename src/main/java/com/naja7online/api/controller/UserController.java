@@ -5,12 +5,17 @@ import org.springframework.web.bind.annotation.*;
 import com.naja7online.api.dto.*;
 import com.naja7online.api.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import com.naja7online.api.dto.CourseSummaryDto;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
     private final UserService userService;
@@ -42,5 +47,11 @@ public class UserController {
         );
         DashboardDto dashboardData = new DashboardDto("Bonjour, " + principal.getUsername(), courses, stats);
         return ResponseEntity.ok(dashboardData);
+    }
+    @GetMapping("/me/courses")
+    public ResponseEntity<List<CourseSummaryDto>> getMyEnrolledCourses(Authentication authentication) {
+        String userEmail = authentication.getName();
+        List<CourseSummaryDto> enrolledCourses = userService.getEnrolledCourses(userEmail);
+        return ResponseEntity.ok(enrolledCourses);
     }
 }

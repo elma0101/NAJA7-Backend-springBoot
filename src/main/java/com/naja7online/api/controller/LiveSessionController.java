@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/live-sessions")
-@CrossOrigin(origins = "http://localhost:5173") // Allows our frontend to call these endpoints
 public class LiveSessionController {
 
     private final LiveSessionService liveSessionService;

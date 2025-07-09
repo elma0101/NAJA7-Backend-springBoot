@@ -16,7 +16,7 @@ public class User implements UserDetails { // <-- IMPLEMENT THE INTERFACE HERE
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -81,7 +81,7 @@ public class User implements UserDetails { // <-- IMPLEMENT THE INTERFACE HERE
         return true;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -101,7 +101,7 @@ public class User implements UserDetails { // <-- IMPLEMENT THE INTERFACE HERE
         return role;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

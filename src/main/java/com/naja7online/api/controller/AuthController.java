@@ -11,8 +11,6 @@ import com.naja7online.api.dto.LoginResponseDto;
 
 @RestController
 @RequestMapping("/api/auth")
-// Allow requests from our React frontend (running on port 5173)
-@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
     private final AuthService authService;
